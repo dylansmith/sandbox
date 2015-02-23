@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>dragable-resizable-dom</title>
+  <style type="text/css" media="screen">
+    .demo {
+      position: fixed;
+      top: 100px;
+      width: 100px;
+      height: 100px;
+      background: rgba(255, 0, 0, .3);
+      border: 1px solid #f00;
+    }
+
+    #demo1 { left: 100px; }
+    #demo2 { left: 300px; }
+    #demo3 { left: 500px; }
+
+    .dragable {
+      cursor: move;
+    }
+
+    .unselectable {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      -o-user-select: none;
+      overflow: hidden;
+    }
+
+    .resizable-trigger {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 0;
+      height: 0;
+      cursor: nwse-resize;
+      border-style: solid;
+      border-width: 0 0 8px 8px;
+      border-color: transparent transparent #f00 transparent;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="demo1" class="demo dragable">dragable only</div>
+  <div id="demo2" class="demo resizable">resizable only</div>
+  <div id="demo3" class="demo dragable resizable">dragable &amp; resizable</div>
+
+  <script type="text/javascript">
+
+    /**
+     * Common prototype for Dragable and Resizable (or any other similar)
+     * mouse behaviour constructors.
+     * @type {Object}
+     */
+    var MouseBehaviour = {
+      el: null,
+      trigger: null,
+      startEvent: null,
+      bound: {},
+
+      init: function(el, trigger) {
+        this.el = el;
+        this.trigger = trigger || this.el;
+        // bind event handlers
+        ['start', 'update', 'end'].forEach(function(fn) {
+          this.bound[fn] = this[fn].bind(this);
+        }.bind(this));
+        this.bind();
+      },
+
+      bind: function() {
+        this.trigger.addEventListener('mousedown', this.bound.start);
+        document.addEventListener('mousemove', this.bound.update);
+        document.addEventListener('mouseup', this.bound.end);
+      },
+
+      unbind: function() {
+        this.trigger.removeEventListener('mousedown', this.bound.start);
+        document.addEventListener('mousemove', this.bound.update);
+        document.addEventListener('mouseup', this.bound.end);
+      },
+
+      start: function(evt) {
+        this.startEvent = evt;
+        document.body.classList.add('unselectable');
+        evt.stopPropagation();
+      },
+
+      update: function(/*evt*/) {
+        // abstract
+      },
+
+      end: function() {
+        this.startEvent = null;
+        document.body.classList.remove('unselectable');
+      }
+    };
+
+    /**
+     * Dragable constructor
+     * @param {DOMElement} el
+     */
+    function Dragable(el) {
+      this.update = function(evt) {
+        if (this.startEvent) {
+          this.el.style.top = (evt.pageY - this.startEvent.offsetY)+'px';
+          this.el.style.left = (evt.pageX - this.startEvent.offsetX)+'px';
+        }
+      };
+      this.init(el);
+    }
+    Dragable.prototype = Object.create(MouseBehaviour);
+
+    /**
+     * Resizable constructor
+     * @param {DOMElement} el
+     */
+    function Resizable(el) {
+      // create a trigger
+      var trigger = document.createElement('div');
+      trigger.classList.add('resizable-trigger');
+      el.appendChild(trigger);
+
+      this.update = function(evt) {
+        if (this.startEvent) {
+          this.el.style.width = (evt.pageX - this.el.offsetLeft)+'px';
+          this.el.style.height = (evt.pageY - this.el.offsetTop)+'px';
+        }
+      };
+
+      this.init(el, trigger);
+    }
+    Resizable.prototype = Object.create(MouseBehaviour);
+
+    //=========================================================================
+    // Example usage
+    //=========================================================================
+
+    var dragables = document.querySelectorAll('.dragable'),
+        resizables = document.querySelectorAll('.resizable');
+
+    Array.prototype.slice.call(dragables).forEach(function(el) {
+      return new Dragable(el);
+    });
+
+    Array.prototype.slice.call(resizables).forEach(function(el) {
+      return new Resizable(el);
+    });
+
+  </script>
+
+</body>
+</html>
