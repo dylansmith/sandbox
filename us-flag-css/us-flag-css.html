@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>The American Flag in CSS</title>
+</head>
+<body>
+  <style>
+    #flag {
+      width: 741px; /* 13 * 30px * 1.9 */
+      border: 2px solid #000;
+      position: relative;
+    }
+
+    #flag ul, #flag li {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      font-size: 0;
+    }
+
+    #colonies li {
+      height: 30px;
+      background: #b22234;
+    }
+
+    #colonies li:nth-child(2n) {
+      background: #fff;
+    }
+
+    #flag #states {
+      position: absolute;
+      top: 0;
+      width: 40%;
+      padding-top:9px;
+      height: 201px;
+      background: #3c3b6e;
+    }
+
+    #states li {
+      display: inline-block;
+      margin: 0px 12px;
+      width: 25px;
+      height: 21px;
+    }
+
+    #states li:nth-child(11n-4) {
+      margin-left: 35px;
+    }
+
+    #states li::after {
+      text-indent: 0;
+      content: '\2605';
+      color: #fff;
+      font-size: 24px;
+      line-height: 24px;
+    }
+  </style>
+
+  <section id="flag">
+    <ul id="colonies">
+      <li title="Province of New Hampshire">Province of New Hampshire</li>
+      <li title="Province of Massachusetts Bay">Province of Massachusetts Bay</li>
+      <li title="Colony of Rhode Island and Providence Plantations">Colony of Rhode Island and Providence Plantations</li>
+      <li title="Connecticut Colony">Connecticut Colony</li>
+      <li title="Province of New York">Province of New York</li>
+      <li title="Province of New Jersey">Province of New Jersey</li>
+      <li title="Province of Pennsylvania">Province of Pennsylvania</li>
+      <li title="Delaware Colony">Delaware Colony</li>
+      <li title="Province of Maryland">Province of Maryland</li>
+      <li title="Colony and Dominion of Virginia">Colony and Dominion of Virginia</li>
+      <li title="Province of North Carolina">Province of North Carolina</li>
+      <li title="Province of South Carolina">Province of South Carolina</li>
+      <li title="Province of Georgia">Province of Georgia</li>
+    </ul>
+    <ul id="states">
+      <li title="Alabama">Alabama</li>
+      <li title="Alaska">Alaska</li>
+      <li title="Arizona">Arizona</li>
+      <li title="Arkansas">Arkansas</li>
+      <li title="California">California</li>
+      <li title="Colorado">Colorado</li>
+      <li title="Connecticut">Connecticut</li>
+      <li title="Delaware">Delaware</li>
+      <li title="Florida">Florida</li>
+      <li title="Georgia">Georgia</li>
+      <li title="Hawaii">Hawaii</li>
+      <li title="Idaho">Idaho</li>
+      <li title="Illinois">Illinois</li>
+      <li title="Indiana">Indiana</li>
+      <li title="Iowa">Iowa</li>
+      <li title="Kansas">Kansas</li>
+      <li title="Kentucky">Kentucky</li>
+      <li title="Louisiana">Louisiana</li>
+      <li title="Maine">Maine</li>
+      <li title="Maryland">Maryland</li>
+      <li title="Massachusetts">Massachusetts</li>
+      <li title="Michigan">Michigan</li>
+      <li title="Minnesota">Minnesota</li>
+      <li title="Mississippi">Mississippi</li>
+      <li title="Missouri">Missouri</li>
+      <li title="Montana">Montana</li>
+      <li title="Nebraska">Nebraska</li>
+      <li title="Nevada">Nevada</li>
+      <li title="New Hampshire">New Hampshire</li>
+      <li title="New Jersey">New Jersey</li>
+      <li title="New Mexico">New Mexico</li>
+      <li title="New York">New York</li>
+      <li title="North Carolina">North Carolina</li>
+      <li title="North Dakota">North Dakota</li>
+      <li title="Ohio">Ohio</li>
+      <li title="Oklahoma">Oklahoma</li>
+      <li title="Oregon">Oregon</li>
+      <li title="Pennsylvania">Pennsylvania</li>
+      <li title="Rhode Island">Rhode Island</li>
+      <li title="South Carolina">South Carolina</li>
+      <li title="South Dakota">South Dakota</li>
+      <li title="Tennessee">Tennessee</li>
+      <li title="Texas">Texas</li>
+      <li title="Utah">Utah</li>
+      <li title="Vermont">Vermont</li>
+      <li title="Virginia">Virginia</li>
+      <li title="Washington">Washington</li>
+      <li title="West Virginia">West Virginia</li>
+      <li title="Wisconsin">Wisconsin</li>
+      <li title="Wyoming">Wyoming</li>
+    </ul>
+  </section>
+  <p><em>Hover over a star or stripe to see the related state or colony</em></p>
+</body>
+</html>
