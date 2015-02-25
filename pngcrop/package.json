@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "name": "pngcrop",
+  "version": "1.0.0",
+  "description": "Node utility to crop PNG files from a src dir to a target dir.",
+  "main": "pngcrop.js",
+  "dependencies": {
+    "glob": "^4.4.0",
+    "png-crop": "0.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node pngcrop.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "ISC"
+}
