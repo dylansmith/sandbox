@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "name": "imgutils",
+  "version": "1.0.0",
+  "description": "Node utilities for image processing",
+  "dependencies": {
+    "glob": "^5.0.1",
+    "gm": "^1.17.0",
+    "png-crop": "0.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {},
+  "license": "ISC"
+}
