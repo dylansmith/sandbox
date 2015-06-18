@@ -1,0 +1,17 @@
+{
+  "name": "color-analysis",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "colorguard": "^0.3.0",
+    "handlebars": "^3.0.3",
+    "lodash": "^3.9.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node index.js && open output.html"
+  },
+  "author": "",
+  "license": "ISC"
+}
